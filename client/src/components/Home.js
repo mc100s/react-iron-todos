@@ -22,18 +22,7 @@ class Home extends Component {
   handleAdd(e){
     e.preventDefault();
     let todos = this.state.todos.slice()
-    api.addTodos({
-      text: this.state.newTodoText, 
-    })
-    .then(data => {
-      this.setState({
-        todos: [
-          ...todos, 
-          {...data.todo, _owner: api.loadUser()}
-        ],
-        newTodoText: ''
-      })
-    })
+
     this.setState({
       todos: [
         ...this.state.todos, 
@@ -44,6 +33,19 @@ class Home extends Component {
       ],
       newTodoText: ''
     })
+
+    api.addTodos({
+      text: this.state.newTodoText, 
+    })
+    .then(data => {
+      this.setState({
+        todos: [
+          ...todos, 
+          {...data.todo, _owner: api.loadUser()}
+        ],
+      })
+    })
+    
   }
 
   handleChange(e){
