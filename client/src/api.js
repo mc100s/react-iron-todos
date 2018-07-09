@@ -19,9 +19,16 @@ export default {
       .catch(errHandler);
   },
 
-  postCountries(data) {
+  addTodos(data) {
     return service
-      .post('/countries', data)
+      .post('/todos', data)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteTodos(id) {
+    return service
+      .delete('/todos/'+id)
       .then(res => res.data)
       .catch(errHandler);
   },
